@@ -1,0 +1,106 @@
+@import '../../media.scss';
+
+.image-wrap {
+    height: 15rem;
+    @include for-phone-only {
+        height: 18rem;
+    }
+    @include for-tablet-portrait-up {
+        height: 18rem;
+    }
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    align-content: center;
+    overflow: hidden;
+    border-radius: 0.35rem;
+    box-shadow: 2px 2px 5px 0px #d6d6d6;
+    position: relative;
+    cursor: pointer;
+    > img {
+        height: 100%;
+        object-fit: cover;
+    }
+    > span {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+    .overlay {
+        position: absolute;
+        display: none;
+        background-color: rgba(111, 111, 111, 0.7);
+        color: #ffffff;
+        height: 100%;
+        width: 100%;
+        .overlay-inner {
+            padding: 0 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100%;
+            justify-content: center;
+            h4 {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+                line-height: 1.5rem;
+                border-bottom: 1px solid #cbcbcb;
+                padding-bottom: 1rem;
+                width: 100%;
+                span {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
+                    display: block;
+                    overflow: hidden;
+                }
+            }
+            h5 {
+                font-size: 1rem;
+                font-weight: bold;
+                margin-bottom: 2rem;
+                line-height: 1.25rem;
+            }
+        }
+    }
+    &:hover {
+        .overlay {
+            display: block;
+        }
+    }
+    .fav-btn {
+        -webkit-border-radius: 28;
+        -moz-border-radius: 28;
+        border-radius: 28px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 1rem;
+        padding: 0 2rem;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+        border: 0px none;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid #fff;
+        align-items: center;
+        cursor: pointer;
+        .loading {
+            margin: 0.5rem 0 0 -1rem;
+        }
+    }
+
+    .fav-btn:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+    }
+}

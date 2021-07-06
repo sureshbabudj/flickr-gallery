@@ -1,0 +1,142 @@
+$dark: #595959;
+$light: #f2f2f2;
+$favorite: #f43d3d;
+
+.loading.alignCenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .heart-wrap {
+        margin-left: -40px; // reset the absolute position in flexbox with neg margin
+    }
+}
+
+/*** end of circle ***/
+.circles {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    div.circle {
+        position: absolute;
+        border: 4px solid $dark;
+        opacity: 1;
+        border-radius: 50%;
+        animation: circles 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    div:circle2 {
+        animation-delay: -0.5s;
+    }
+}
+@keyframes circles {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+/*** end of circles ***/
+
+/*** ring ***/
+.ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    div.ring-child {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid $dark;
+        border-radius: 50%;
+        animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: $dark transparent transparent transparent;
+    }
+    div.ring-child:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    div.ring-child:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    div.ring-child:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+}
+@keyframes ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/******* end of ring  *********/
+
+/******* heart  *********/
+.heart-wrap {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transform: rotate(45deg);
+    transform-origin: 40px 40px;
+    div.heart {
+        top: 16px;
+        left: 16px;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: $favorite;
+        animation: heart-wrap 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    div:after,
+    div:before {
+        content: ' ';
+        position: absolute;
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: $favorite;
+    }
+    div:before {
+        left: -12px;
+        border-radius: 50% 0 0 50%;
+    }
+    div:after {
+        top: -12px;
+        border-radius: 50% 50% 0 0;
+    }
+}
+@keyframes heart-wrap {
+    0% {
+        transform: scale(0.95);
+    }
+    5% {
+        transform: scale(1.1);
+    }
+    39% {
+        transform: scale(0.85);
+    }
+    45% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}
+/******* end of heart  *********/

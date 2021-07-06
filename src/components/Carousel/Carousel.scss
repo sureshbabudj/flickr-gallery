@@ -1,0 +1,12 @@
+@import '../../media.scss';
+.carousel-wrap {
+    margin: 2rem;
+}
+.images-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    grid-gap: 1.75rem;
+    @include for-small-phone-only {
+        grid-template-columns: auto;
+    }
+}
