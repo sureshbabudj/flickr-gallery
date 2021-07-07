@@ -1,31 +1,16 @@
 import {useState, useEffect} from 'react';
+import {Output, apiProps, apiParams} from '../types';
 import useMemoCompare from './useMemoCompare';
-
-interface Params {
-    method: string;
-    api_key: string;
-    format: string;
-    page: number;
-    per_page: number;
-}
-
-export interface Props {
-    url: string;
-    params: Params;
-}
-
-export interface Output {
-    data: any; // can be customized with the API params
-    errors: any; // can be of custom Error based on the app need
-    fetching: boolean;
-}
 
 function jsonFlickrApi(data) {
     // will get called while evaluating the JSONP response
     return data;
 }
 
-export default function useJsonp(props: Props): Output {
+export default function useJsonp(
+    props: apiProps,
+    callback?: (data?: any) => any,
+): Output {
     const [data, setData] = useState(null);
     const [fetching, setFetching] = useState(false);
     const [errors, setErrors] = useState(null);
@@ -45,6 +30,9 @@ export default function useJsonp(props: Props): Output {
             const data = eval(responseText);
             setData(data);
             setErrors(null);
+            if (typeof callback === 'function') {
+                callback(data);
+            }
             setFetching(false);
         } catch (error) {
             setErrors(error);
@@ -55,7 +43,7 @@ export default function useJsonp(props: Props): Output {
 
     const queryCached = useMemoCompare(
         {...props.params},
-        (prev: Params, next: Params) => {
+        (prev: apiParams, next: apiParams) => {
             return prev && prev.page === next.page;
         },
     );

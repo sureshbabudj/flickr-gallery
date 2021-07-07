@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 /* CSS reset */
 body,
 div,
@@ -39,10 +41,10 @@ img {
     border: 0;
 }
 input {
-    border: 1px solid #b0b0b0;
+    border: 1px solid $lightGray;
     padding: 3px 5px 4px;
-    color: #979797;
-    width: 190px;
+    color: $lightGray01;
+    width: $inputLength;
 }
 address,
 caption,
@@ -84,8 +86,8 @@ acronym {
 html {
     font-size: 12px;
     font-family: Arial;
-    color: #333;
-    background-color: #efefef;
+    color: $darkGray;
+    background-color: $lightGray02;
     @include for-tablet-landscape-up {
         font-size: 13px;
     }
@@ -99,4 +101,39 @@ html {
 
 .wrapper {
     margin: 0 auto;
+}
+
+/*** heart ***/
+.heart-wrap {
+    display: inline-block;
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    transform: rotate(45deg);
+    transform-origin: 2.5em 2.5em;
+    div.heart {
+        top: 1em;
+        left: 1em;
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        background: $red;
+    }
+    div.heart:after,
+    div.heart:before {
+        content: ' ';
+        position: absolute;
+        display: block;
+        width: 1em;
+        height: 1em;
+        background: $red;
+    }
+    div.heart:before {
+        left: -1em;
+        border-radius: 50% 0 0 50%;
+    }
+    div.heart:after {
+        top: -1em;
+        border-radius: 50% 50% 0 0;
+    }
 }

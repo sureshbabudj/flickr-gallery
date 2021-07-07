@@ -1,7 +1,8 @@
 import Loading from '../Loading/Loading';
-import React, {MutableRefObject, ReactElement} from 'react';
-import {Photo} from '../../types';
+import React, {MutableRefObject, ReactElement, useContext} from 'react';
+import {Photo, ContextType} from '../../types';
 import './Image.scss';
+import {Context} from '../../Store';
 
 interface Props {
     ref?: MutableRefObject<HTMLElement>;
@@ -10,7 +11,12 @@ interface Props {
 }
 
 function Image({photo, type}: Props): ReactElement {
-    const url = `https://live.staticflickr.com/${photo['server']}/${photo['id']}_${photo['secret']}_w.jpg`;
+    const {state, dispatch} = useContext<ContextType>(Context);
+    const favorites = state.favoriteReducer;
+    const photoId = `${photo.server}/${photo.id}_${photo.secret}`;
+    const isFavorite =
+        favorites && favorites.length && favorites.includes(photoId);
+    const url = `https://live.staticflickr.com/${photoId}_w.jpg`;
     return (
         <div className="image-wrap">
             <img src={url} alt={photo.title} hidden={type === 'contain'} />
@@ -23,12 +29,33 @@ function Image({photo, type}: Props): ReactElement {
                         <span>{photo.title}</span>
                     </h4>
                     <h5>{photo.owner}</h5>
-                    <button className="fav-btn">
-                        <span>Favorite</span>
-                        <Loading type="heart" />
-                    </button>
+                    {!isFavorite ? (
+                        <button
+                            className="fav-btn"
+                            onClick={() =>
+                                dispatch({type: 'makeFavorite', id: photoId})
+                            }>
+                            <span>Favorite</span>
+                            <Loading type="heart" />
+                        </button>
+                    ) : (
+                        ''
+                    )}
                 </div>
             </div>
+            {isFavorite ? (
+                <div
+                    className="favorite"
+                    onClick={() =>
+                        dispatch({type: 'removeFavorite', id: photoId})
+                    }>
+                    <div className="heart-wrap">
+                        <div className="heart"></div>
+                    </div>
+                </div>
+            ) : (
+                ''
+            )}
         </div>
     );
 }

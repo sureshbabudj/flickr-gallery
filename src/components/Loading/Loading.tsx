@@ -31,7 +31,7 @@ function Loading({type, alignCenter}: Props): ReactElement {
         case 'heart':
             body = (
                 <div className="heart-wrap">
-                    <div className="heart"></div>
+                    <div className="heart heart-animation"></div>
                 </div>
             );
             break;

@@ -28,3 +28,38 @@ export interface PhotosData {
     extra: Extra;
     stat: string;
 }
+
+export type ContextType = {
+    state: Store;
+    dispatch: any;
+};
+
+export type Store = {
+    photosReducer?: PhotosData | null;
+    favoriteReducer?: string[];
+};
+
+export type ActionType = {
+    type: string;
+    data?: any;
+    id?: number;
+};
+
+export interface apiParams {
+    method: string;
+    api_key: string;
+    format: string;
+    page: number;
+    per_page: number;
+}
+
+export interface apiProps {
+    url: string;
+    params: apiParams;
+}
+
+export interface Output {
+    data: any; // can be customized with the API params
+    errors: any; // can be of custom Error based on the app need
+    fetching: boolean;
+}

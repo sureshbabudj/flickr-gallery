@@ -46,11 +46,12 @@ function Carousel({data, onScrollEnd}: Props): ReactElement {
                     <span
                         id={photo.id}
                         ref={
-                            i === data.photos.photo.length - 1
+                            // fetching at (totalImages - 4)th image.. as it needs time to load the new photos
+                            i === data.photos.photo.length - 4
                                 ? lastPhotoRef
                                 : null
                         }
-                        key={photo.id}>
+                        key={photo.id + i}>
                         <Image photo={photo} type="contain" />
                     </span>
                 ))}

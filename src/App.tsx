@@ -1,12 +1,15 @@
-import React, {ReactElement, useState, useEffect} from 'react';
-import useJsonp, {Output} from './utils/useJsonp';
+import React, {ReactElement, useState, useContext} from 'react';
+import useJsonp from './utils/useJsonp';
 import './styles.scss';
 import {FLICKR_ENDPOINT, FLICKR_FORMAT, FLICKR_API_KEY} from './constants';
 import Carousel from './components/Carousel/Carousel';
-import {PhotosData} from './types';
 import Loading from './components/Loading/Loading';
+import {Context} from './Store';
+import {ContextType} from './types';
 
 const App = (): ReactElement => {
+    const {state, dispatch} = useContext<ContextType>(Context);
+    const photoData = state?.photosReducer;
     const [api, setApi] = useState({
         url: FLICKR_ENDPOINT,
         params: {
@@ -17,8 +20,10 @@ const App = (): ReactElement => {
             per_page: 24,
         },
     });
-    const {data, fetching, errors} = useJsonp(api);
-    const [photoData, setPhotoData] = useState<PhotosData>(null);
+    const callback = (data) => {
+        dispatch({type: 'appendPhotos', data});
+    };
+    const {fetching, errors} = useJsonp(api, callback);
 
     function loadMore(): void {
         if (photoData.photos.pages < api.params.page + 1) {
@@ -38,16 +43,6 @@ const App = (): ReactElement => {
     } else if (errors) {
         body = <div>{errors}</div>;
     }
-
-    useEffect(() => {
-        if (!photoData) {
-            setPhotoData(data);
-        } else if (photoData.photos.page !== data.photos.page) {
-            const temp = [...photoData.photos.photo, ...data.photos.photo];
-            data.photos.photo = temp;
-            setPhotoData(data);
-        }
-    }, [data]);
 
     return (
         <div className="wrapper">

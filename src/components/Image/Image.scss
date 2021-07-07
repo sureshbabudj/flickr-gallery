@@ -1,4 +1,5 @@
 @import '../../media.scss';
+@import '../../variables.scss';
 
 .image-wrap {
     height: 15rem;
@@ -14,9 +15,8 @@
     align-content: center;
     overflow: hidden;
     border-radius: 0.35rem;
-    box-shadow: 2px 2px 5px 0px #d6d6d6;
+    box-shadow: 2px 2px 5px 0px $lightGray03;
     position: relative;
-    cursor: pointer;
     > img {
         height: 100%;
         object-fit: cover;
@@ -30,8 +30,8 @@
     .overlay {
         position: absolute;
         display: none;
-        background-color: rgba(111, 111, 111, 0.7);
-        color: #ffffff;
+        background-color: $overlayColor;
+        color: $white;
         height: 100%;
         width: 100%;
         .overlay-inner {
@@ -43,11 +43,11 @@
             min-height: 100%;
             justify-content: center;
             h4 {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 font-weight: bold;
                 margin-bottom: 1rem;
                 line-height: 1.5rem;
-                border-bottom: 1px solid #cbcbcb;
+                border-bottom: 1px solid $lightGray04;
                 padding-bottom: 1rem;
                 width: 100%;
                 span {
@@ -59,7 +59,7 @@
                 }
             }
             h5 {
-                font-size: 1rem;
+                font-size: 1.25rem;
                 font-weight: bold;
                 margin-bottom: 2rem;
                 line-height: 1.25rem;
@@ -72,35 +72,51 @@
         }
     }
     .fav-btn {
-        -webkit-border-radius: 28;
-        -moz-border-radius: 28;
-        border-radius: 28px;
-        font-family: Arial;
-        color: #ffffff;
-        font-size: 1rem;
-        padding: 0 2rem;
+        border-radius: 0.5rem;
+        color: $white;
+        font-size: 1.25rem;
+        padding: 0 1.5rem 0 1rem;
         text-decoration: none;
         outline: none;
         box-shadow: none;
-        border: 0px none;
         display: flex;
         align-items: center;
         background-color: transparent;
-        border: 1px solid #fff;
+        border: 1px solid $white;
         align-items: center;
         cursor: pointer;
         .loading {
-            margin: 0.5rem 0 0 -1rem;
+            margin: 0.5rem 0 0 0rem;
+            font-size: 0.6em;
         }
     }
 
     .fav-btn:hover {
-        background: #3cb0fd;
-        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        background: $secondaryColor;
+        background-image: -webkit-linear-gradient(top, $secondaryColor, $blue);
+        background-image: -moz-linear-gradient(top, $secondaryColor, $blue);
+        background-image: -ms-linear-gradient(top, $secondaryColor, $blue);
+        background-image: -o-linear-gradient(top, $secondaryColor, $blue);
+        background-image: linear-gradient(to bottom, $secondaryColor, $blue);
         text-decoration: none;
+    }
+    .favorite {
+        position: absolute;
+        font-size: 0.8em;
+        top: -1rem;
+        right: -2rem;
+        width: 0;
+        height: 0;
+        border-left: 3rem solid transparent;
+        border-right: 3rem solid transparent;
+        border-top: 3rem solid $white;
+        transform: rotate(225deg);
+        cursor: pointer;
+        .heart-wrap {
+            position: absolute;
+            top: -4.9rem;
+            transform: rotate(180deg);
+            right: 1.3rem;
+        }
     }
 }
