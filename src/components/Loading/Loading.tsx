@@ -1,12 +1,12 @@
 import React, {ReactElement} from 'react';
 import './Loading.scss';
 
-interface Props {
+export interface LoadingProps {
     type?: 'dual-ring' | 'circles' | 'heart';
     alignCenter?: boolean;
 }
 
-function Loading({type, alignCenter}: Props): ReactElement {
+function Loading({type, alignCenter}: LoadingProps): ReactElement {
     let body;
 
     switch (type) {
