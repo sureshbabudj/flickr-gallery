@@ -4,13 +4,13 @@ import {Photo, ContextType} from '../../types';
 import './Image.scss';
 import {Context} from '../../Store';
 
-interface Props {
+export interface ImageProps {
     ref?: MutableRefObject<HTMLElement>;
     photo: Photo;
     type: 'contain' | 'cover';
 }
 
-function Image({photo, type}: Props): ReactElement {
+function Image({photo, type}: ImageProps): ReactElement {
     const {state, dispatch} = useContext<ContextType>(Context);
     const favorites = state.favoriteReducer;
     const photoId = `${photo.server}/${photo.id}_${photo.secret}`;

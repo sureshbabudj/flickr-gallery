@@ -1,7 +1,3 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import {configure} from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -18,6 +14,7 @@ declare global {
 }
 
 configure({adapter: new Adapter()});
+
 // const virtualConsole = new JSDOM.createVirtualConsole();
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {
     url: 'http://localhost',
@@ -32,14 +29,33 @@ function copyProps(src, target) {
 }
 
 (global as any).window = window;
-(global as any).document = window.document;
+global.document = window.document;
 (global as any).navigator = {
     userAgent: 'node.js',
 };
-(global as any).requestAnimationFrame = function (callback) {
+global.requestAnimationFrame = function (callback) {
     return setTimeout(callback, 0);
 };
-(global as any).cancelAnimationFrame = function (id) {
+global.cancelAnimationFrame = function (id) {
     clearTimeout(id);
 };
+const localStorageMock = (function () {
+    let store = {};
+    return {
+        getItem: function (key) {
+            return store[key];
+        },
+        setItem: function (key, value) {
+            store[key] = value.toString();
+        },
+        clear: function () {
+            store = {};
+        },
+        removeItem: function (key) {
+            delete store[key];
+        },
+    };
+})();
+Object.defineProperty(window, 'localStorage', {value: localStorageMock});
+
 copyProps(window, global);

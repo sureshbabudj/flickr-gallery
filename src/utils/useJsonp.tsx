@@ -35,7 +35,7 @@ export default function useJsonp(
             }
             setFetching(false);
         } catch (error) {
-            setErrors(error);
+            setErrors('Failed to fetch');
             setData(null);
             setFetching(false);
         }
