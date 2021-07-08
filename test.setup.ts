@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import {configure} from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import {JSDOM} from 'jsdom';
+import {setupIntersectionObserverMock} from './mock/testUtils';
 
 declare global {
     namespace NodeJS {
@@ -57,5 +58,7 @@ const localStorageMock = (function () {
     };
 })();
 Object.defineProperty(window, 'localStorage', {value: localStorageMock});
+
+setupIntersectionObserverMock();
 
 copyProps(window, global);

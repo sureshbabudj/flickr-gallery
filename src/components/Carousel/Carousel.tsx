@@ -8,12 +8,12 @@ import {PhotosData} from '../../types';
 import Image from '../Image/Image';
 import './Carousel.scss';
 
-interface Props {
+export interface CarouselProps {
     data: PhotosData;
     onScrollEnd: () => void;
 }
 
-function Carousel({data, onScrollEnd}: Props): ReactElement {
+function Carousel({data, onScrollEnd}: CarouselProps): ReactElement {
     const photoRef: MutableRefObject<HTMLElement> = useRef(null);
     const callbackFunction = (entries) => {
         const [entry] = entries;
