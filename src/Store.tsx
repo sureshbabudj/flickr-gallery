@@ -3,9 +3,12 @@ import {ContextType, Store} from './types';
 import {reducers} from './reducers';
 import {MY_FLICKR_FAV} from './constants';
 
-let favorites: string[];
+let favorites: string[] = [];
 try {
-    favorites = JSON.parse(localStorage.getItem(MY_FLICKR_FAV));
+    const localFavorites = localStorage.getItem('MY_FLICKR_FAV');
+    if (localFavorites) {
+        favorites = JSON.parse(localStorage.getItem(MY_FLICKR_FAV));
+    }
 } catch (error) {
     favorites = [];
 }

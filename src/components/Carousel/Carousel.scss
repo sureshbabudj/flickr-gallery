@@ -1,6 +1,25 @@
 @import '../../media.scss';
+@import '../../variables.scss';
+
 .carousel-wrap {
     margin: 2rem;
+    .img-render-select {
+        position: fixed;
+        right: -2rem;
+        top: 50%;
+        z-index: 99;
+        transform: rotate(90deg);
+        button {
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: $secondaryColor;
+            color: $white;
+            border: 0px none;
+            outline: none;
+            box-shadow: 0px 0px 3px 3px $lightGray01;
+        }
+    }
 }
 .images-wrap {
     display: grid;

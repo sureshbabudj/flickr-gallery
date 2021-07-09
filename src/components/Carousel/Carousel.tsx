@@ -2,10 +2,11 @@ import React, {
     MutableRefObject,
     ReactElement,
     useCallback,
-    useRef
+    useRef,
+    useState
 } from 'react';
 import {PhotosData} from '../../types';
-import Image from '../Image/Image';
+import Image, {ImageProps} from '../Image/Image';
 import './Carousel.scss';
 
 export interface CarouselProps {
@@ -14,6 +15,7 @@ export interface CarouselProps {
 }
 
 function Carousel({data, onScrollEnd}: CarouselProps): ReactElement {
+    const [renderType, setRenderType] = useState<ImageProps['type']>('contain');
     const photoRef: MutableRefObject<HTMLElement> = useRef(null);
     const callbackFunction = (entries) => {
         const [entry] = entries;
@@ -41,6 +43,17 @@ function Carousel({data, onScrollEnd}: CarouselProps): ReactElement {
 
     return (
         <div className="carousel-wrap">
+            <div className="img-render-select">
+                {renderType === 'contain' ? (
+                    <button onClick={() => setRenderType('cover')}>
+                        Cover
+                    </button>
+                ) : (
+                    <button onClick={() => setRenderType('contain')}>
+                        Contain
+                    </button>
+                )}
+            </div>
             <div className="images-wrap">
                 {data.photos.photo.map((photo, i) => (
                     <span
@@ -52,7 +65,7 @@ function Carousel({data, onScrollEnd}: CarouselProps): ReactElement {
                                 : null
                         }
                         key={photo.id + i}>
-                        <Image photo={photo} type="contain" />
+                        <Image photo={photo} type={renderType} />
                     </span>
                 ))}
             </div>

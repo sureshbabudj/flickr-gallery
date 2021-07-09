@@ -19,6 +19,7 @@ function Image({photo, type}: ImageProps): ReactElement {
     const url = `https://live.staticflickr.com/${photoId}_w.jpg`;
     return (
         <div className="image-wrap">
+            {/* seo-friendly image tag with title - hidden will keep this tag in document */}
             <img src={url} alt={photo.title} hidden={type === 'contain'} />
             <span
                 style={{backgroundImage: `url(${url})`}}

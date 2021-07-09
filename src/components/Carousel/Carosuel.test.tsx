@@ -37,6 +37,18 @@ describe('Image Component', () => {
         );
     });
 
+    it('should change image render type', () => {
+        wrapper = mount(templateFn(props));
+        const imgRenderSelect = wrapper.find('.img-render-select');
+        expect(imgRenderSelect.find('button').text()).toBe('Cover');
+
+        imgRenderSelect.find('button').simulate('click');
+        expect(imgRenderSelect.find('button').text()).toBe('Contain');
+
+        imgRenderSelect.find('button').simulate('click');
+        expect(imgRenderSelect.find('button').text()).toBe('Cover');
+    });
+
     it('should trigger fetch when end of the page', () => {
         wrapper = mount(templateFn(props));
         const temp = {...mockData};
