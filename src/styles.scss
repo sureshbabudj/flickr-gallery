@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './media.scss';
 
 /* CSS reset */
 body,
@@ -82,7 +83,7 @@ acronym {
     border: 0;
 }
 /** /css-reset **/
-@import './media.scss';
+
 html {
     font-size: 12px;
     font-family: Arial;
