@@ -17,7 +17,7 @@ describe('loading Component', () => {
     beforeEach(() => {
         loading = shallow(<Loading />);
         dualRingLoading = shallow(
-            <Loading type="dual-ring" alignCenter={false} />,
+            <Loading type="dual-ring" alignCenter={false} />
         );
         circlesLoading = shallow(<Loading type="circles" alignCenter={true} />);
         heartLoading = shallow(<Loading type="heart" alignCenter={true} />);

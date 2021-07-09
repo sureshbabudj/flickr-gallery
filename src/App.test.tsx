@@ -22,13 +22,11 @@ let mockApiErr = false;
         text: () => {
             return !mockApiErr
                 ? Promise.resolve(
-                      `jsonFlickrApi(${JSON.stringify(
-                          mockData.photosReducer,
-                      )})`,
+                      `jsonFlickrApi(${JSON.stringify(mockData.photosReducer)})`
                   )
                 : Promise.reject('fetch failed');
-        },
-    }),
+        }
+    })
 );
 
 describe('App Component', () => {
@@ -50,7 +48,7 @@ describe('App Component', () => {
         });
         // expect(wrapper.find('div.wrapper')).toBe(1);
         expect(container.querySelectorAll('.image-wrap').length).toBe(
-            mockData.photosReducer.photos.photo.length,
+            mockData.photosReducer.photos.photo.length
         );
     });
 

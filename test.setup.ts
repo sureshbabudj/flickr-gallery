@@ -18,21 +18,21 @@ configure({adapter: new Adapter()});
 
 // const virtualConsole = new JSDOM.createVirtualConsole();
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {
-    url: 'http://localhost',
+    url: 'http://localhost'
 });
 const {window} = jsdom;
 
 function copyProps(src, target) {
     Object.defineProperties(target, {
         ...Object.getOwnPropertyDescriptors(src),
-        ...Object.getOwnPropertyDescriptors(target),
+        ...Object.getOwnPropertyDescriptors(target)
     });
 }
 
 (global as any).window = window;
 global.document = window.document;
 (global as any).navigator = {
-    userAgent: 'node.js',
+    userAgent: 'node.js'
 };
 global.requestAnimationFrame = function (callback) {
     return setTimeout(callback, 0);
@@ -54,7 +54,7 @@ const localStorageMock = (function () {
         },
         removeItem: function (key) {
             delete store[key];
-        },
+        }
     };
 })();
 Object.defineProperty(window, 'localStorage', {value: localStorageMock});

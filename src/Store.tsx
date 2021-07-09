@@ -12,7 +12,7 @@ try {
 
 export const store: Store = {
     photosReducer: null,
-    favoriteReducer: favorites,
+    favoriteReducer: favorites
 };
 
 export const Context = React.createContext<ContextType | undefined>(undefined);

@@ -20,7 +20,7 @@ const mockOnScrollEnd = () => {
 describe('Image Component', () => {
     let props: CarouselProps = {
         data: mockData.photosReducer,
-        onScrollEnd: mockOnScrollEnd,
+        onScrollEnd: mockOnScrollEnd
     };
 
     let wrapper: ReactWrapper;
@@ -33,7 +33,7 @@ describe('Image Component', () => {
     it('should render child', () => {
         wrapper = mount(templateFn(props));
         expect(wrapper.find('span').length).toBe(
-            mockData.photosReducer.photos.photo.length,
+            mockData.photosReducer.photos.photo.length
         );
     });
 
@@ -44,13 +44,13 @@ describe('Image Component', () => {
         newPhotos.forEach((i) => (i.id = i.id + 1000));
         temp.photosReducer.photos.photo = [
             ...temp.photosReducer.photos.photo,
-            ...newPhotos,
+            ...newPhotos
         ];
         wrapper.setProps({...props, data: temp.photosReducer});
         wrapper.update();
 
         expect(wrapper.find('span').length).toBe(
-            temp.photosReducer.photos.photo.length,
+            temp.photosReducer.photos.photo.length
         );
     });
 

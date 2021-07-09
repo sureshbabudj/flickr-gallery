@@ -22,9 +22,9 @@ describe('Image Component', () => {
             owner: '150839674@N04',
             secret: 'c137e20d84',
             server: '65535',
-            title: 'Sunset in the  marshes',
+            title: 'Sunset in the  marshes'
         },
-        type: 'cover',
+        type: 'cover'
     };
 
     it('should render without error', () => {
@@ -40,7 +40,7 @@ describe('Image Component', () => {
 
         // update with some different props
         wrapper.setProps({
-            children: <Image photo={props.photo} type="contain" />,
+            children: <Image photo={props.photo} type="contain" />
         });
         expect(wrapper.find(Image).props().type).toEqual('contain');
         expect(wrapper.find('Image').find('img').prop('hidden')).toBe(true);

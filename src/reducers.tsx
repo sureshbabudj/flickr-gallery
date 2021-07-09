@@ -46,7 +46,7 @@ export function photosReducer(state = store.photosReducer, {type, data}) {
 }
 
 export function combineReducers(
-    reducers,
+    reducers
 ): (state: Store, action: ActionType) => Store {
     return (state = {}, action) => {
         const newState = {};

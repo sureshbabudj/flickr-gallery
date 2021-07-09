@@ -17,8 +17,8 @@ const App = (): ReactElement => {
             api_key: FLICKR_API_KEY,
             format: FLICKR_FORMAT,
             page: 1,
-            per_page: 24,
-        },
+            per_page: 24
+        }
     });
     const callback = (data) => {
         dispatch({type: 'appendPhotos', data});

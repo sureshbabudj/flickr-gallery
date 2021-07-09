@@ -2,7 +2,7 @@ import React, {
     MutableRefObject,
     ReactElement,
     useCallback,
-    useRef,
+    useRef
 } from 'react';
 import {PhotosData} from '../../types';
 import Image from '../Image/Image';
