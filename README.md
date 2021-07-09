@@ -8,7 +8,6 @@ An application used to showcase most interesting photos from flickr built with R
 
 This project is currently in development. Users can filter see bmost interesting photos. Functionality to show other filters and masonry kind of rendering is in progress.
 
-## Project Screen Shot(s)
 
 ## Installation and Setup Instructions
 
